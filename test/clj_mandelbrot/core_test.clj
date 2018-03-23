@@ -3,5 +3,8 @@
             [clj-mandelbrot.core :refer :all]))
 
 (deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+  (testing "value of a complex number"
+    (is (= (Math/sqrt 18) (value (->Complex 3 3))))))
+
+
+
