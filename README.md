@@ -1,6 +1,6 @@
 # clj-mandelbrot
 
-Renders a Mandelbrot Set as ASCII Art
+Renders a Mandelbrot Set as ASCII Art. See https://en.wikipedia.org/wiki/Mandelbrot_set for further details.
 
 
 ## Usage
@@ -10,7 +10,6 @@ Renders a Mandelbrot Set as ASCII Art
 
 ## Examples
 
-    $ lein run
 ```
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$@$$$@$$@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$@@@$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
