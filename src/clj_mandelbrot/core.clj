@@ -32,6 +32,6 @@
   [& args]
   (cond
     (nil? args) (println (mandelbrot-as-chars))
-    (= "png" (first args)) (png/draw-mandelbrot 4500 3000 1000)
+    (= "png" (first args)) (png/draw-mandelbrot 450 300 1000)
     :else (println (mandelbrot-as-chars))
     ))
