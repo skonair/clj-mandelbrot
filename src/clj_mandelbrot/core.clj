@@ -1,57 +1,37 @@
 (ns clj-mandelbrot.core
+  (require [clj-mandelbrot.complex :as cx]
+           [clj-mandelbrot.fraktal :as fr]
+           [clj-mandelbrot.png :as png]
+           )
   (:gen-class))
 
-(defprotocol IComplex
-  (add [c1 c2])
-  (pow [c])
-  (real [c])
-  (imag [c])
-  (value [c]))
-
-(deftype Complex [^double r ^double i]
-  IComplex
-  (add [_ c]
-    (Complex. (+ r (real c)) (+ i (imag c))))
-  (pow [_]
-    (Complex. (+ (* r r) (- (* i i)) )
-              (* 2 r i)))
-  (real [_] r)
-  (imag [_] i)
-  (value [_] (Math/sqrt (+ (* r r) (* i i)))))
-
-
-(def MAXDEPTH 1000)
-
-(defn iter [c]
-  (loop [z (Complex. 0 0)
-         i 0]
-    (let [zn (add (pow z) c)
-          zv (value zn)]
-      (cond
-        (> zv MAXDEPTH) i
-        (> i MAXDEPTH) i
-        :else (recur zn (inc i))))))
-
 (def palette "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ")
-(defn iter-char [i]
-  (.charAt palette (int (* i (/ (dec (count palette)) MAXDEPTH)))))
+(defn iter-char [i maxd]
+  (.charAt palette (int (* i (/ (dec (count palette)) maxd)))))
 
-(defn ic [i]
+(defn ic [i maxd]
   (-> i
-      iter
-      iter-char))
+      (fr/iter maxd)
+      (iter-char maxd)))
 
-(defn mandelbrot-as-chars []
-  (loop [x -2
-         y -1
+(defn mandelbrot-as-chars
+  ([xs ys xe ye xd yd maxd]
+  (loop [x xs
+         y ys
          s ""]
-    (if (> y 1)
+    (if (> y ye)
       s
-      (if (>= x 1)
-        (recur -2 (+ y 1/20) (str s \newline))
-        (recur (+ x 1/60) y (str s (ic (Complex. x y))))))))
+      (if (>= x xe)
+        (recur xs (+ y yd) (str s \newline))
+        (recur (+ x xd) y (str s (ic (cx/make-complex x y) maxd )))))))
+  ([] (mandelbrot-as-chars -2 -1 1 1 1/60 1/20 1000))
+  )
 
 (defn -main
   "Renders an ASCII-Art Mandelbrot Set"
   [& args]
-  (println (mandelbrot-as-chars) ) )
+  (cond
+    (nil? args) (println (mandelbrot-as-chars))
+    (= "png" (first args)) (png/draw-mandelbrot 4500 3000 1000)
+    :else (println (mandelbrot-as-chars))
+    ))
