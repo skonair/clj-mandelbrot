@@ -15,7 +15,7 @@ Pretty much hard-coded values.
 
 Mandelbrot set as png
 
-
+![Image of Mandelbrot set](https://github.com/skoanir/doc/mandelbrot.png)
 
 
 Mandelbrot set in ASCII Art
