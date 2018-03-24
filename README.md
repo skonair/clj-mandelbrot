@@ -1,14 +1,24 @@
 # clj-mandelbrot
 
-Renders a Mandelbrot Set as ASCII Art. See https://en.wikipedia.org/wiki/Mandelbrot_set for further details.
+Renders a Mandelbrot Set as ASCII Art or png format. See https://en.wikipedia.org/wiki/Mandelbrot_set for further details.
+
+Pretty much hard-coded values.
 
 
 ## Usage
 
-    $ lein run
+    $ lein run png
 
+    $ lein run ascii
 
 ## Examples
+
+Mandelbrot set as png
+
+
+
+
+Mandelbrot set in ASCII Art
 
 ```
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$@$$$@$$@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
