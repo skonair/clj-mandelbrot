@@ -8,5 +8,5 @@
           zv (cx/value zn)]
       (cond
         (>= zv 2) i
-        (>= i maxd) 0
+        (>= i maxd) i
         :else (recur zn (inc i))))))
