@@ -4,8 +4,7 @@
   (import java.io.File)
   (import java.awt.Color)
   (import java.awt.image.BufferedImage)
-  (import javax.imageio.ImageIO)
-  (:gen-class))
+  (import javax.imageio.ImageIO))
 
 (defn get-raster [w h maxd]
   (for [y (range (inc h))
@@ -14,7 +13,7 @@
               fx (/ 3 w)
               fy (/ 2 h)
               i (fr/iter (cx/make-complex (- (* fx x) 2) (- (* fy  y) 1)) maxd )
-              color (int (* i (/ 255 maxd)))]
+              color (int (* (Math/log (inc i))  (/ 255 (Math/log maxd))))]
         ]
     [x y (- 255 color)]
     )
@@ -24,7 +23,6 @@
   (let [bi (BufferedImage. w (inc h) BufferedImage/TYPE_INT_RGB)
         g (.createGraphics bi)]
     (doseq [[x y color] (get-raster w (inc h) maxd)]
-      (.setColor g (Color. ^int (mod color 53) ^int (mod color 27) ^int (mod color 232)) )
+      (.setColor g (Color. ^int color ^int (mod color 113) ^int (mod color 173)) )
       (.fillRect g x y 1 1))
     (ImageIO/write bi "png"  (File. "mandelbrot.png"))))
-

@@ -27,11 +27,15 @@
   ([] (mandelbrot-as-chars -2 -1 1 1 1/60 1/20 1000))
   )
 
+(defn usage []
+  "usage: lein run [png|ascii]")
+
 (defn -main
   "Renders an ASCII-Art Mandelbrot Set"
   [& args]
   (cond
-    (nil? args) (println (mandelbrot-as-chars))
-    (= "png" (first args)) (png/draw-mandelbrot 450 300 1000)
-    :else (println (mandelbrot-as-chars))
+    (nil? args) (println (usage))
+    (= "png" (first args)) (png/draw-mandelbrot 600 400 1000)
+    (= "ascii" (first args)) (println (mandelbrot-as-chars))
+    :else (println (usage))
     ))
